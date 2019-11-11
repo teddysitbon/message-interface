@@ -1,0 +1,173 @@
+@import '../global.scss';
+
+
+.header{
+    background: $white;
+    box-sizing: border-box;
+    //box-shadow: 0 0 50px 0 rgba(28,15,125,0.05);
+    height: 88px;
+    line-height: 88px;
+    position: fixed;
+    display: flex;
+    z-index: 100;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    transition: all .5s ease;
+    border-bottom: 1px solid $grey;
+
+    &-link{
+        padding-top: 15px;
+    }
+    .logo svg{
+        fill: $orange;
+        height: 100%;
+        width: 230px;
+    }
+}
+
+.connection{
+    position: fixed;
+    right: 0px;
+    top: 88px;
+    width: 250px;
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid #eff2fa;
+    padding: 20px;
+    &-content{
+        margin-bottom: 20px;
+        .connection-name{
+            color: $black;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        input{
+            width: 100%;
+            padding: 5px;
+        }
+    }
+    &-footer{
+        .connection-link{
+            cursor: pointer;
+            color: $blue;
+        }
+    }
+}
+
+.list {
+    .message{
+        background: $white;
+        box-shadow: 0 5px 10px -5px #e0e3ec;
+        border: 1px solid #eff2fa;
+        padding: 3rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+
+        &-header{
+            margin-bottom: 10px;
+            color: $black;
+            font-weight: 600;
+        }
+        &-text{
+            color: $black;
+        }
+        &-footer{
+            margin-top: 25px;
+            font-size: 11px;
+            .message-logo svg{
+                width: 13px;
+                height: 13px;
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.comment{
+    background: $white;
+    box-shadow: 0 5px 10px -5px #e0e3ec;
+    border: 1px solid #eff2fa;
+    padding: 3rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+
+    &-logo{
+        margin-right: 20px;
+        svg{
+            width: 40px;
+            height: 40px;
+        }
+    }
+    .post{
+        width: 100%;
+        &-header{
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        &-message textarea{
+            width: 90%;
+            height: 60px;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            resize: horizontal;
+
+            background: $white;
+            border: 1px solid;
+            border-color: #ddd;
+            box-shadow: none;
+            color: #444;
+            padding: .5rem 1rem;
+            margin-bottom: 20px;
+        }
+        &-footer{
+            display: flex;
+            .post-private{
+                input{
+                    margin-right: 10px;
+                }
+            }
+            .post-send{
+                margin-left: auto;
+                cursor: pointer;
+                color: $blue;
+            }
+        }
+    }
+}
+
+.container-action{
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    color: $blue;
+    font-weight: 600;
+
+    &:hover::after{
+        opacity: 1;
+        -webkit-transition-property: width,opacity;
+        transition-property: width,opacity;
+        -webkit-transition: .3s ease-out;
+        transition: .3s ease-out;
+        width: 100%;
+    }
+    &::after{
+        border-bottom: 3px solid #f56b2a;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        transform: translateX(-50%);
+        width: 0;
+    }
+}
