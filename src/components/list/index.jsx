@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from '../message';
 import { messages } from '../../constants';
+import './styles.scss';
 
 class List extends React.Component {
 
@@ -15,7 +16,7 @@ class List extends React.Component {
     render () {
 
         return (
-            <section>
+            <section className={'container'}>
                 {
                     this.state.messages.map(message => (
                         <Message

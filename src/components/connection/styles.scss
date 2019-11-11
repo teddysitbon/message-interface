@@ -2,13 +2,17 @@
 
 .connection{
     position: fixed;
-    right: 0px;
-    top: 88px;
+    left: 50%;
+    margin-left: -125px;
+    top: 50%;
+    margin-top: -100px;
     width: 250px;
     background: $white;
     border-radius: 10px;
     border: 1px solid #eff2fa;
     padding: 20px;
+    z-index: 2;
+
     &-content{
         margin-bottom: 20px;
         .connection-name{
@@ -19,6 +23,9 @@
         input{
             width: 100%;
             padding: 5px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
         }
     }
     &-footer{
@@ -26,5 +33,15 @@
             cursor: pointer;
             color: $blue;
         }
+    }
+    &-background{
+        position: fixed;
+        top: 88px;
+        bottom: 0;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.3);
+        left: 0;
+        right: 0;
+        cursor: pointer;
     }
 }

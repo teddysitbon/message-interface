@@ -13,6 +13,7 @@ class Connection extends React.Component {
 
     render () {
         return (
+            <>
             <div className={'connection'}>	
                 <div className={'connection-content'}>
                     <div className={'connection-username'}>
@@ -30,6 +31,11 @@ class Connection extends React.Component {
                     </div>
                 </div>
             </div>
+            <div
+                className={'connection-background'}
+                onClick={this.props.onClose}    
+            />
+            </>
         );
     }
 }
