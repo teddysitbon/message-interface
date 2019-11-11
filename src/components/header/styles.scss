@@ -1,0 +1,27 @@
+@import '../../global.scss';
+
+.header{
+    background: $white;
+    box-sizing: border-box;
+    height: 88px;
+    line-height: 88px;
+    position: fixed;
+    display: flex;
+    z-index: 100;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    padding-left: 50px;
+    padding-right: 50px;
+    transition: all .5s ease;
+    border-bottom: 1px solid $grey;
+
+    &-link{
+        padding-top: 15px;
+    }
+    .logo svg{
+        fill: $orange;
+        height: 100%;
+        width: 230px;
+    }
+}

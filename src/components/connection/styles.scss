@@ -1,0 +1,30 @@
+@import '../../global.scss';
+
+.connection{
+    position: fixed;
+    right: 0px;
+    top: 88px;
+    width: 250px;
+    background: $white;
+    border-radius: 10px;
+    border: 1px solid #eff2fa;
+    padding: 20px;
+    &-content{
+        margin-bottom: 20px;
+        .connection-name{
+            color: $black;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        input{
+            width: 100%;
+            padding: 5px;
+        }
+    }
+    &-footer{
+        .connection-link{
+            cursor: pointer;
+            color: $blue;
+        }
+    }
+}

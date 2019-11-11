@@ -1,0 +1,57 @@
+@import '../../global.scss';
+
+.comment{
+    background: $white;
+    box-shadow: 0 5px 10px -5px #e0e3ec;
+    border: 1px solid #eff2fa;
+    padding: 3rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+
+    &-logo{
+        margin-right: 20px;
+        svg{
+            width: 40px;
+            height: 40px;
+        }
+    }
+    .post{
+        width: 100%;
+        &-header{
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        &-message textarea{
+            width: 90%;
+            height: 60px;
+            overflow: hidden;
+            overflow-wrap: break-word;
+            resize: horizontal;
+
+            background: $white;
+            border: 1px solid;
+            border-color: #ddd;
+            box-shadow: none;
+            color: #444;
+            padding: .5rem 1rem;
+            margin-bottom: 20px;
+        }
+        &-footer{
+            display: flex;
+            .post-private{
+                label {
+                    cursor: pointer;
+                }
+                input{
+                    margin-right: 10px;
+                }
+            }
+            .post-send{
+                margin-left: auto;
+                cursor: pointer;
+                color: $blue;
+            }
+        }
+    }
+}
