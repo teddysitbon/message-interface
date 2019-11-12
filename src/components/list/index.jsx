@@ -1,33 +1,40 @@
 import './styles.scss';
 import Message from '../message';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { messages } from '../../constants';
-class List extends React.Component {
-    state = {
-        messages: []
-    }
+import { connect } from 'react-redux';
 
-    // eslint-disable-next-line react/no-deprecated
-    componentWillMount () {
-        this.setState({ messages });
-    }
+const propTypes = {
+    messages: PropTypes.array,
+};
+const defaultProps = {
+    messages: []
+};
 
-    render () {
-        return (
-            <section className="container">
-                {
-                    this.state.messages.map((message) => (
-                        <Message
-                            isPrivated={message.isPrivated}
-                            key={message.id}
-                            text={message.text}
-                            username={message.username}
-                        />
-                    ))
-                }
-            </section>
-        );
-    }
+function List (props) {
+    return (
+        <section className="container">
+            {
+                props.messages.reverse().map((message) => (
+                    <Message
+                        isPrivated={message.isPrivated}
+                        key={message.id}
+                        text={message.text}
+                        username={message.username}
+                    />
+                ))
+            }
+        </section>
+    );
 }
 
-export default List;
+List.propTypes = propTypes;
+List.defaultProps = defaultProps;
+const mapStateToProps = (state) => ({
+    messages: state.messages,
+});
+export default connect(
+    mapStateToProps,
+    null
+)(List);
+

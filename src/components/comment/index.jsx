@@ -1,7 +1,11 @@
 import './styles.scss';
 import React, { Component } from 'react';
 import { LOCALE } from '../../constants/locale.js';
+import PropTypes from 'prop-types';
 import Svg from '../svg';
+import { addMessage } from '../../actions/index.js';
+import classNames from 'classnames';
+import { connect } from 'react-redux';
 
 const {
     WRITE,
@@ -9,6 +13,10 @@ const {
     PRIVATE_MODE,
 } = LOCALE.COMMENT;
 class Comment extends Component {
+    static propTypes = {
+        addMessage: PropTypes.func.isRequired,
+    };
+
     state = {
         isPrivateModeChecked: false,
         value: ''
@@ -20,6 +28,24 @@ class Comment extends Component {
 
     handlePrivateMode = () => {
         this.setState((prevState) => ({ isPrivateModeChecked: !prevState.isPrivateModeChecked }));
+    }
+
+    handleSendMessage = () => {
+        const message = {
+            id: 234,
+            isPrivated: this.state.isPrivateModeChecked,
+            text: this.state.value,
+            username: 'Teddy',
+        };
+        this.props.addMessage(message);
+        this.resetForm();
+    }
+
+    resetForm = () => {
+        this.setState({
+            isPrivateModeChecked: false,
+            value: ''
+        });
     }
 
     render () {
@@ -45,17 +71,21 @@ class Comment extends Component {
                         </div>
                         <div className="post-footer">
                             <div className="post-private">
-                                <input
-                                    id="privateMode"
+                                <span
+                                    className={classNames(
+                                        'post-checkbox',
+                                        { 'post-checkbox--checked': this.state.isPrivateModeChecked }
+                                    )}
                                     onClick={this.handlePrivateMode}
-                                    type="checkbox"
-                                    value={this.state.isPrivateModeChecked}
                                 />
-                                <label htmlFor="privateMode">
+                                <label>
                                     {PRIVATE_MODE}
                                 </label>
                             </div>
-                            <div className="post-send">
+                            <div
+                                className="post-send"
+                                onClick={this.handleSendMessage}
+                            >
                                 <span>
                                     {PUBLISH}
                                 </span>
@@ -67,5 +97,12 @@ class Comment extends Component {
         );
     }
 }
+const mapDispatchToProps = {
+    addMessage
+};
 
-export default Comment;
+export default connect(
+    null,
+    mapDispatchToProps
+)(Comment);
+
