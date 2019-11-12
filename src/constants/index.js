@@ -13,7 +13,7 @@ export const messages = [
     },
     {
         id: 138,
-        isPrivated: true,
+        isPrivated: false,
         text: 'Test d\'un second message privé un peu plus long',
         username: 'Teddy',
     },

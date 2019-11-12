@@ -2,7 +2,8 @@ import { ADD_MESSAGE } from '../constants/action.js';
 import { messages } from '../constants';
 
 const initialState = {
-    messages
+    messages,
+    isConnected: false,
 };
 
 const rootReducer = (state = initialState, action) => {
