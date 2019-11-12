@@ -15,6 +15,7 @@ const {
 class Comment extends Component {
     static propTypes = {
         addMessage: PropTypes.func.isRequired,
+        user: PropTypes.object.isRequired,
     };
 
     state = {
@@ -32,10 +33,11 @@ class Comment extends Component {
 
     handleSendMessage = () => {
         const message = {
-            id: 234,
+            id: Math.floor(Math.random() * 1000),
+            idUser: this.props.user.id,
             isPrivated: this.state.isPrivateModeChecked,
             text: this.state.value,
-            username: 'Teddy',
+            username: this.props.user.username,
         };
         this.props.addMessage(message);
         this.resetForm();
@@ -97,12 +99,16 @@ class Comment extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    user: state.user,
+});
 const mapDispatchToProps = {
     addMessage
 };
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Comment);
 

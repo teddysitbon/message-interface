@@ -5,7 +5,7 @@ export const LOCALE = {
         PRIVATE_MODE: 'Rendre votre commentaire privé',
     },
     CONNECTION: {
-        USERNAME: 'Nom Utilisateur',
+        USERNAME: 'Nom utilisateur',
         CONNECT: 'Se connecter',
     },
     HEADER: {

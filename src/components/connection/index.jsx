@@ -3,6 +3,9 @@ import './styles.scss';
 import React, { Component } from 'react';
 import { LOCALE } from '../../constants/locale.js';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { connectUser } from '../../actions/index.js';
+import { users } from '../../constants';
 
 const {
     USERNAME,
@@ -11,6 +14,7 @@ const {
 
 class Connection extends Component {
     static propTypes = {
+        connectUser: PropTypes.func.isRequired,
         onClose: PropTypes.func.isRequired,
     };
 
@@ -20,6 +24,23 @@ class Connection extends Component {
 
     handleChange = (event) => {
         this.setState({ value: event.target.value });
+    }
+
+    handleConnectUser = () => {
+        const username = this.state.value;
+        if (this.isInArrayOfUsers(username)) {
+            const user = this.returnUser(username);
+            this.props.connectUser(user);
+            this.props.onClose();
+        }
+    }
+
+    isInArrayOfUsers (username) {
+        return users.filter((user) => user.username === username).length > 0;
+    }
+
+    returnUser (username) {
+        return users.filter((user) => user.username === username)[0];
     }
 
     render () {
@@ -37,7 +58,10 @@ class Connection extends Component {
                         />
                     </div>
                     <div className="connection-footer">
-                        <div className="connection-link">
+                        <div
+                            className="connection-link"
+                            onClick={this.handleConnectUser}
+                        >
                             {CONNECT}
                         </div>
                     </div>
@@ -51,4 +75,11 @@ class Connection extends Component {
     }
 }
 
-export default Connection;
+const mapDispatchToProps = {
+    connectUser
+};
+export default connect(
+    null,
+    mapDispatchToProps
+)(Connection);
+

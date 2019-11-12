@@ -4,6 +4,7 @@ import { LOCALE } from '../../constants/locale.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Svg from '../svg';
+import { connect } from 'react-redux';
 
 const {
     WELCOME,
@@ -12,11 +13,11 @@ const {
 class Header extends React.Component {
     static propTypes = {
         isConnected: PropTypes.bool.isRequired,
-        username: PropTypes.string,
+        user: PropTypes.object,
     };
 
     static defaultProps = {
-        username: ''
+        user: {}
     };
 
     state = {
@@ -35,7 +36,7 @@ class Header extends React.Component {
         if (this.props.isConnected) {
             return (
                 <span className="container-action">
-                    {`${WELCOME} ${this.props.username}`}
+                    {`${WELCOME} ${this.props.user.username}`}
                 </span>
             );
         }
@@ -76,4 +77,12 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+    isConnected: state.isConnected,
+    user: state.user,
+});
+export default connect(
+    mapStateToProps,
+    null
+)(Header);
+

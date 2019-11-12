@@ -13,9 +13,7 @@ const propTypes = {
 function App (props) {
     return (
         <>
-            <Header
-                isConnected={props.isConnected}
-            />
+            <Header />
             {
                 props.isConnected &&
                 <Comment />
