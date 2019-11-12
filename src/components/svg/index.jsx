@@ -1,20 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { path } from './svgPath.js';
-
-const propTypes = {
-    className: PropTypes.string,
-    type: PropTypes.string,
-    viewBox: PropTypes.string,
-};
-
-const defaultProps = {
-    className: null,
-    type: null,
-    viewBox: '0 0 20 20',
-};
-
 class Svg extends PureComponent {
+    static propTypes = {
+        className: PropTypes.string,
+        type: PropTypes.string,
+        viewBox: PropTypes.string,
+    };
+
+    static defaultProps = {
+        className: null,
+        type: null,
+        viewBox: '0 0 20 20',
+    };
+
     getPath () {
         return path[this.props.type];
     }
@@ -29,8 +28,5 @@ class Svg extends PureComponent {
         );
     }
 }
-
-Svg.propTypes = propTypes;
-Svg.defaultProps = defaultProps;
 
 export default Svg;

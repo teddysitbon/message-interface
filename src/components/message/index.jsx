@@ -1,62 +1,61 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import Svg from '../svg';
-//import classNames from 'classnames';
-//import { connect } from 'react-redux';
 import './styles.scss';
+import React, { Component } from 'react';
+import { LOCALE } from '../../constants/locale.js';
+import PropTypes from 'prop-types';
+import Svg from '../svg';
 
-
-class Message extends React.Component {
+const {
+    PRIVATE,
+    PUBLIC,
+} = LOCALE.MESSAGE;
+class Message extends Component {
     static propTypes = {
         isPrivated: PropTypes.bool.isRequired,
         text: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
     };
 
-    static defaultProps = {
-    };
-
-    renderStatusMessage = () => {
+    renderStatusMessage () {
         if (this.props.isPrivated) {
             return (
                 <>
                     <Svg
-                        className='message-logo'
+                        className="message-logo"
                         type="locked"
                         viewBox="0 0 54 54"
                     />
                     <span>
-                        {'Ce message est privé. Vous le voyez car vous êtes connecté.'}
+                        {PRIVATE}
                     </span>
                 </>
-            )
+            );
         }
         return (
             <>
                 <Svg
-                    className='message-logo'
+                    className="message-logo"
                     type="public"
                     viewBox="0 0 480.1 480.1"
                 />
                 <span>
-                    {'Ce message est public. Tout le monde peut le voir.'}
+                    { PUBLIC }
                 </span>
             </>
-        )
+        );
     }
 
     render () {
         return (
-            <div className={'message'}>
-                <div className={'message-header'}>
-                    <span className={'message-name'}>
+            <div className="message">
+                <div className="message-header">
+                    <span className="message-name">
                         { this.props.username }
                     </span>
                 </div>
-                <div className={'message-text'}>
+                <div className="message-text">
                     { this.props.text }
                 </div>
-                <div className={'message-footer'}>
+                <div className="message-footer">
                     { this.renderStatusMessage() }
                 </div>
             </div>

@@ -1,8 +1,14 @@
-import React from 'react';
-import Svg from '../svg';
 import './styles.scss';
+import React, { Component } from 'react';
+import { LOCALE } from '../../constants/locale.js';
+import Svg from '../svg';
 
-class Comment extends React.Component {
+const {
+    WRITE,
+    PUBLISH,
+    PRIVATE_MODE,
+} = LOCALE.COMMENT;
+class Comment extends Component {
     state = {
         isPrivateModeChecked: false,
         value: ''
@@ -13,34 +19,32 @@ class Comment extends React.Component {
     }
 
     handlePrivateMode = () => {
-        this.setState((prevState) => {
-            return { isPrivateModeChecked: !prevState.isPrivateModeChecked };
-        });
+        this.setState((prevState) => ({ isPrivateModeChecked: !prevState.isPrivateModeChecked }));
     }
 
     render () {
         return (
-            <section className={'comment'}>
-                <div className={'comment-container'}>
-                    <div className={'comment-logo'}>
+            <section className="comment">
+                <div className="comment-container">
+                    <div className="comment-logo">
                         <Svg
-                            className='logo'
+                            className="logo"
                             type="pen"
                             viewBox="0 0 504.161 504.161"
                         />
                     </div>
-                    <div className={'post'}>
-                        <div className={'post-header'}>
-                            {'Écrire un message'}
+                    <div className="post">
+                        <div className="post-header">
+                            {WRITE}
                         </div>
-                        <div className={'post-message'}>
+                        <div className="post-message">
                             <textarea
                                 onChange={this.handleChangeComment}
                                 value={this.state.value}
                             />
                         </div>
-                        <div className={'post-footer'}>
-                            <div className={'post-private'}>
+                        <div className="post-footer">
+                            <div className="post-private">
                                 <input
                                     id="privateMode"
                                     onClick={this.handlePrivateMode}
@@ -48,12 +52,12 @@ class Comment extends React.Component {
                                     value={this.state.isPrivateModeChecked}
                                 />
                                 <label htmlFor="privateMode">
-                                    {'Rendre votre commentaire privé'}
+                                    {PRIVATE_MODE}
                                 </label>
                             </div>
-                            <div className={'post-send'}>
+                            <div className="post-send">
                                 <span>
-                                    {'Publier'}
+                                    {PUBLISH}
                                 </span>
                             </div>
                         </div>

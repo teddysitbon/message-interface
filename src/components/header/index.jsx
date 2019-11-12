@@ -1,9 +1,14 @@
+import './styles.scss';
 import Connection from '../connection';
+import { LOCALE } from '../../constants/locale.js';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Svg from '../svg';
-import './styles.scss';
 
+const {
+    WELCOME,
+    CONNECT,
+} = LOCALE.HEADER;
 class Header extends React.Component {
     static propTypes = {
         isConnected: PropTypes.bool.isRequired,
@@ -17,30 +22,29 @@ class Header extends React.Component {
     state = {
         isFormConnectionOpen: false,
     }
+
     handleCloseForm = () => {
         this.setState({ isFormConnectionOpen: false });
     }
 
-    renderFormConnection = () => {
-        this.setState((prevState) => {
-            return { isFormConnectionOpen: !prevState.isFormConnectionOpen };
-        });
+    handleFormConnection = () => {
+        this.setState((prevState) => ({ isFormConnectionOpen: !prevState.isFormConnectionOpen }));
     }
 
-    renderConnection = () => {
+    renderConnection () {
         if (this.props.isConnected) {
             return (
-                <span className={'container-action'}>
-                    {`Bienvenue ${this.props.username}`}
+                <span className="container-action">
+                    {`${WELCOME} ${this.props.username}`}
                 </span>
             );
         }
         return (
             <span
-                className={'container-action'}
-                onClick={this.renderFormConnection}
+                className="container-action"
+                onClick={this.handleFormConnection}
             >
-                {'Se connecter'}
+                {CONNECT}
             </span>
         );
     }
@@ -48,15 +52,15 @@ class Header extends React.Component {
     render () {
         return (
             <>
-                <header className={'header'}>
-                    <a 
-                        className={'header-link'}
-                        href='/'
+                <header className="header">
+                    <a
+                        className="header-link"
+                        href="https://www.leboncoin.fr/"
                     >
                         <Svg
-                            className='logo'
+                            className="logo"
                             type="logo"
-                            viewBox=""
+                            viewBox="0 0 230 45"
                         />
                     </a>
                     { this.renderConnection() }

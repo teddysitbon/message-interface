@@ -1,29 +1,27 @@
-import React from 'react';
-import Message from '../message';
-import { messages } from '../../constants';
 import './styles.scss';
-
+import Message from '../message';
+import React from 'react';
+import { messages } from '../../constants';
 class List extends React.Component {
-
     state = {
         messages: []
     }
-    
-    componentWillMount() {
+
+    // eslint-disable-next-line react/no-deprecated
+    componentWillMount () {
         this.setState({ messages });
-    };
+    }
 
     render () {
-
         return (
-            <section className={'container'}>
+            <section className="container">
                 {
-                    this.state.messages.map(message => (
+                    this.state.messages.map((message) => (
                         <Message
-                            key={message.id}
                             isPrivated={message.isPrivated}
-                            username={message.username}
+                            key={message.id}
                             text={message.text}
+                            username={message.username}
                         />
                     ))
                 }

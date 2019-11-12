@@ -1,8 +1,19 @@
 
-import React from 'react';
 import './styles.scss';
+import React, { Component } from 'react';
+import { LOCALE } from '../../constants/locale.js';
+import PropTypes from 'prop-types';
 
-class Connection extends React.Component {
+const {
+    USERNAME,
+    CONNECT,
+} = LOCALE.CONNECTION;
+
+class Connection extends Component {
+    static propTypes = {
+        onClose: PropTypes.func.isRequired,
+    };
+
     state = {
         value: ''
     };
@@ -14,27 +25,27 @@ class Connection extends React.Component {
     render () {
         return (
             <>
-            <div className={'connection'}>	
-                <div className={'connection-content'}>
-                    <div className={'connection-username'}>
-                        {'Username'}
+                <div className="connection">
+                    <div className="connection-content">
+                        <div className="connection-username">
+                            {USERNAME}
+                        </div>
+                        <input
+                            onChange={this.handleChange}
+                            type="text"
+                            value={this.state.value}
+                        />
                     </div>
-                    <input
-                        onChange={this.handleChange}
-                        type="text"
-                        value={this.state.value}
-                    />
-                </div>
-                <div className={'connection-footer'}>
-                    <div className={'connection-link'}>
-                        {'Se connecter'}
+                    <div className="connection-footer">
+                        <div className="connection-link">
+                            {CONNECT}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div
-                className={'connection-background'}
-                onClick={this.props.onClose}    
-            />
+                <div
+                    className="connection-background"
+                    onClick={this.props.onClose}
+                />
             </>
         );
     }
